@@ -112,7 +112,7 @@ module Sidekiq
     # Enqueue a job based on a config hash
     def self.enqueue_from_config(job_config)
       job_config['class'] = constantize(job_config['class']) # Sidekiq expects the class to be constantized.
-      job_config['args'] = '' if job_config['args'].nil?
+      job_config['args'] = [] if job_config['args'].nil?
 
       Sidekiq::Client.push(job_config)
     end
